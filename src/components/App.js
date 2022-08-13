@@ -18,10 +18,17 @@ function App() {
     console.log({ todos });
   };
 
+  const toggleTodo = (id) => {
+    const newTodos = [...todos];
+    const todo = newTodos.find(todo => todo.id === id);
+    todo.complete = !todo.complete;
+    setTodos(newTodos);
+  };
+
   return (
     <>
       <Header title={"Todo App"} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Todo</button>
       <button>Clear Complete</button>
