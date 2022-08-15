@@ -29,11 +29,19 @@ function App() {
     setTodos(newTodos);
   };
 
+  const onTodoNameFocus = (e) => {
+    e.target.placeholder = "";
+  };
+
+  const onTodoNameBlur = (e) => {
+    e.target.placeholder = "Enter a todo";
+  };
+
   return (
     <>
       <Header title={"Todo App"} />
       <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <input ref={todoNameRef} type="text" />
+      <input ref={todoNameRef} type="text" placeholder="Enter a todo" onFocus={onTodoNameFocus} onBlur={onTodoNameBlur} />
       <button onClick={handleAddTodo}>Add Todo</button>
       <button onClick={clearComplete}>Clear Complete</button>
       <div className="left-todo">{todos.filter(todo => !todo.complete).length} left to do</div>
